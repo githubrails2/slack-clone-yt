@@ -12,10 +12,11 @@ export const SidebarOptionContainer = styled.div`
 	}
 	> h3 {
 		font-weight: 500;
+		> span {
+			padding: 15px;
+		}
 	}
-	> span {
-		padding: 15px;
-	}
+	
 	> hr {
 		margin-top: 10px;
 		margin-bottom: 10px;
