@@ -1,9 +1,11 @@
 import { SidebarOptionChannel, SidebarOptionContainer } from "./styles";
 import { db } from "../../../config/firebase";
-import {useCollection} from 'react-firebase-hooks/firestore'
-const SidebarOption = ({ Icon, title, addChannelOption }) => {
-	const [channels,loading,error] = useCollection(db.collection('rooms'));
-	console.log(channels);
+//import {useCollection} from 'react-firebase-hooks/firestore'
+import {useDispatch,useSelector} from 'react-redux';
+import {enterRoom} from '../../../features/appSlice';
+const SidebarOption = ({ Icon, title, addChannelOption,id }) => {
+	const dispatch = useDispatch();
+	
 	const addChannel = () => {
 		const channelName = prompt("Enter a channel name");
 
@@ -13,7 +15,13 @@ const SidebarOption = ({ Icon, title, addChannelOption }) => {
 			});
 		}
 	};
-	const selectChannel = () => {};
+	const selectChannel = () => {
+		if (id) {
+			dispatch(enterRoom({
+				roomId: id
+			}))
+		}
+	};
 	return (
 		<SidebarOptionContainer
 			onClick={addChannelOption ? addChannel : selectChannel}
@@ -23,8 +31,7 @@ const SidebarOption = ({ Icon, title, addChannelOption }) => {
 				<h3>{title}</h3>
 			) : (
 				<SidebarOptionChannel>
-					<span>#</span>
-					{title}
+					<span>#</span>{title}
 				</SidebarOptionChannel>
 			)}
 		</SidebarOptionContainer>

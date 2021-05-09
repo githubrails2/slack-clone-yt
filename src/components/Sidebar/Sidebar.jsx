@@ -42,10 +42,10 @@ const Sidebar = () => {
 			<hr />
 			<SidebarOption Icon={ExpandMore} title="Channels" />
 			<hr />
-			<SidebarOption Icon={Add} addChannelOption title="Add Cha nnel" />
+			<SidebarOption Icon={Add} addChannelOption title="Add Channel" />
 			{channels?.docs.map(doc => {
 				return (
-					<SidebarOption addChannelOption key={doc.id} id={doc.id} title={doc.data().name}/>
+					<SidebarOption  key={doc.id} id={doc.id} title={doc.data().name}/>
 				)
 			})}
 		</SidebarContainer>

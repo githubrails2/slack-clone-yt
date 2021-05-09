@@ -12,9 +12,10 @@ export const SidebarOptionContainer = styled.div`
 	}
 	> h3 {
 		font-weight: 500;
-		> span {
-			padding: 15px;
-		}
+		
+	}
+	>h3 > span {
+		padding: 15px;
 	}
 	
 	> hr {
@@ -23,4 +24,7 @@ export const SidebarOptionContainer = styled.div`
 		border: 1px solid #49274b;
 	}
 `;
-export const SidebarOptionChannel = styled.div``;
+export const SidebarOptionChannel = styled.h3`
+padding: 10px 0;
+font-weight: 300;
+`;
