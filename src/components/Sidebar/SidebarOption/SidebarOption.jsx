@@ -1,8 +1,7 @@
-import { SidebarOptionChannel, SidebarOptionContainer } from "./styles";
-import { db } from "../../../config/firebase";
-//import {useCollection} from 'react-firebase-hooks/firestore'
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../../../features/appSlice";
+import { SidebarOptionChannel, SidebarOptionContainer } from "./styles";
+import { db } from "../../../config/firebase";
 const SidebarOption = ({ Icon, title, addChannelOption, id }) => {
 	const dispatch = useDispatch();
 

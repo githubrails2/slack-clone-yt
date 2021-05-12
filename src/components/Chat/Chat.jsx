@@ -1,5 +1,4 @@
 import { InfoOutlined, StarBorderOutlined } from "@material-ui/icons";
-
 import {
 	ChatBottom,
 	ChatContainer,
@@ -9,12 +8,13 @@ import {
 	ChatMessages,
 } from "./styles";
 import { useSelector } from "react-redux";
-import { selectRoomId } from "../../features/appSlice";
 import ChatInput from "./ChatInput/ChatInput";
 import { useCollection, useDocument } from "react-firebase-hooks/firestore";
-import { db } from "../../config/firebase";
-import Message from "./Message/Message";
 import { useEffect, useRef } from "react";
+import { db } from "../../config/firebase";
+import { selectRoomId } from "../../features/appSlice";
+import Message from "./Message/Message";
+
 const Chat = () => {
 	const chatRef = useRef(null);
 	const roomId = useSelector(selectRoomId);
@@ -53,8 +53,6 @@ const Chat = () => {
 			<ChatMessages>
 				{roomMessages?.docs?.map((doc) => {
 					const { message, timestamp, user, userImage } = doc.data();
-					console.log(doc.data());
-
 					return (
 						<Message
 							key={doc.id}

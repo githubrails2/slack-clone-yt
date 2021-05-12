@@ -14,11 +14,12 @@ import {
 } from "@material-ui/icons";
 import SidebarOption from "./SidebarOption/SidebarOption";
 import { SidebarContainer, SidebarHeader, SidebarInfo } from "./styles";
-import {db} from '../../config/firebase'
-import {useCollection} from 'react-firebase-hooks/firestore'
+import { auth, db } from "../../config/firebase";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 const Sidebar = () => {
-	const [channels,loading,error] = useCollection(db.collection('rooms'));
-
+	const [channels] = useCollection(db.collection("rooms"));
+	const [user] = useAuthState(auth);
 	return (
 		<SidebarContainer>
 			<SidebarHeader>
@@ -26,7 +27,7 @@ const Sidebar = () => {
 					<h2>Papa Fam HQ</h2>
 					<h3>
 						<FiberManualRecord />
-						User Name
+						{user?.displayName}
 					</h3>
 				</SidebarInfo>
 				<Create />
@@ -43,10 +44,10 @@ const Sidebar = () => {
 			<SidebarOption Icon={ExpandMore} title="Channels" />
 			<hr />
 			<SidebarOption Icon={Add} addChannelOption title="Add Channel" />
-			{channels?.docs.map(doc => {
+			{channels?.docs.map((doc) => {
 				return (
-					<SidebarOption  key={doc.id} id={doc.id} title={doc.data().name}/>
-				)
+					<SidebarOption key={doc.id} id={doc.id} title={doc.data().name} />
+				);
 			})}
 		</SidebarContainer>
 	);
